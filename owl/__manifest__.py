@@ -15,7 +15,10 @@
     'installable': True,
     'application': True,
     'assets': {
-        'web.assets_backend': [],
+        'web.assets_backend': [
+            'owl/static/src/components/**/*.js',
+            'owl/static/src/components/**/*.xml',
+        ],
         'web.assets_frontend': [],
     },
 }
