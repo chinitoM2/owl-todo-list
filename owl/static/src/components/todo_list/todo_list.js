@@ -7,7 +7,10 @@ import { useService } from "@web/core/utils/hooks";
 export class OwlTodoList extends Component {
     setup(){
         this.state = useState({
-        taskList:[]
+        task:{name:"", color:"#FF0000", completed:false},
+        taskList:[],
+        isEdit: false,
+        activeId: false,
         })
         this.orm = useService("orm")
         this.model = "owl.todo.list"
@@ -17,9 +20,20 @@ export class OwlTodoList extends Component {
         })
     }
 
-    
+    //helper function to automatically refresh task list data
     async getAllTasks(){
-        this.state.taskList = await this.orm.searchRead("this.model",[],["name", "color", "completed"])
+        this.state.taskList = await this.orm.searchRead(this.model,[],["name", "color", "completed"])
+    }
+
+    addTask(){
+
+    }
+
+    editTask(){
+    }
+
+    async saveTask(){
+        console.log(this.state.task)
     }
 }
 
