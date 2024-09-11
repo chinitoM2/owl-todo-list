@@ -5,7 +5,7 @@
         <div class="todo-list-container">
             <div class="row mx-2 mt-3">
                 <div class="col-lg-6">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="addTask">New</button>
                 </div>
                 <div class="col-lg-6">
                     <div class="input-group">
@@ -39,7 +39,7 @@
                                     <input type="color" class="form-control form-control-color" id="exampleColorInput" t-att-value="task.color" title="Choose your color"/>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button> <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="()=>this.editTask(task)">Edit</button> <button class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -54,7 +54,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3 row">
