@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
 import { registry } from '@web/core/registry';
-const { Component, useState, onWillStart } = owl;
+const { Component, useState, onWillStart, useRef } = owl;
 import { useService } from "@web/core/utils/hooks";
 
 export class OwlTodoList extends Component {
@@ -14,6 +14,7 @@ export class OwlTodoList extends Component {
         })
         this.orm = useService("orm")
         this.model = "owl.todo.list"
+        this.searchInput = useRef("search-input")
 
         onWillStart(async ()=>{
             await this.getAllTasks()
@@ -46,6 +47,17 @@ export class OwlTodoList extends Component {
         }
 
         await this.getAllTasks()
+    }
+
+    async deleteTask(task){
+        await this.orm.unlink(this.model,[task.id])
+        await this.getAllTasks()
+    }
+
+    async searchTasks(){
+        const text = this.searchInput.el.value
+        console.log(text)
+        this.state.taskList = await this.orm.searchRead(this.model, [['name', 'ilike', text]], ["name", "color", "completed"])
     }
 
     // helper function to reset task fields when user wants to add new task

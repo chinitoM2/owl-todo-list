@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search here..."/>
-                        <button class="btn btn-outline-primary">Search</button>
+                        <input type="text" class="form-control" placeholder="Search here..." t-ref="search-input"/>
+                        <button class="btn btn-outline-primary" t-on-click="searchTasks">Search</button>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                     <input type="color" class="form-control form-control-color" id="exampleColorInput" t-att-value="task.color" title="Choose your color"/>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="()=>this.editTask(task)">Edit</button> <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-success me-2"  data-bs-toggle="modal" data-bs-target="#exampleModal" t-on-click="()=>this.editTask(task)">Edit</button> <button class="btn btn-danger" t-on-click="()=>this.deleteTask(task)">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
