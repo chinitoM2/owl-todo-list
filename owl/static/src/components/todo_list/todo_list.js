@@ -60,6 +60,17 @@ export class OwlTodoList extends Component {
         this.state.taskList = await this.orm.searchRead(this.model, [['name', 'ilike', text]], ["name", "color", "completed"])
     }
 
+    // task will be crossed out if checked
+    async toggleTask(event, task){
+        await this.orm.write(this.model, [task.id], {completed: event.target.checked})
+        await this.getAllTasks()
+    }
+
+    async updateColor(event, task){
+        await this.orm.write(this.model, [task.id], {color: event.target.value})
+        await this.getAllTasks()
+    }
+
     // helper function to reset task fields when user wants to add new task
     resetForm(){
         this.state.task = {name:"", color:"#FF0000", completed: false}
