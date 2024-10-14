@@ -5,11 +5,20 @@ import { kanbanView } from "@web/views/kanban/kanban_view"
 import { KanbanController } from "@web/views/kanban/kanban_controller"
 import { useService } from "@web/core/utils/hooks"
 
+const { onWillStart } = owl
+
 class ResPartnerKanbanController extends KanbanController {
     setup(){
         super.setup()
         console.log("This is res partner kanban controller for contacts app")
         this.action = useService("action")
+        this.orm = useService("orm")
+
+        onWillStart(async ()=>{
+            this.customer_locations = await this.orm.readGroup("res.partner", [], ['state_id'], ['state_id'])
+            this.customer_locations = this.customer_locations.filter(location => location.state_id !== false)
+            console.log("customer locations: ", this.customer_locations)
+        })
     }
 
     showSaleOrders(){
@@ -42,6 +51,9 @@ class ResPartnerKanbanController extends KanbanController {
         })
     }
 }
+
+// Customer Location SIDEBAR in Kanban View of Contacts App
+ResPartnerKanbanController.template = "owl.ResPartnerKanbanView"
 
 export const resPartnerKanbanView = {
     ...kanbanView,
