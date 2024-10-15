@@ -11,11 +11,11 @@
     <t t-name="owl.ResPartnerKanbanView" t-inherit="web.KanbanView" owl="1">
         <xpath expr="//t[contains(@t-component, 'props.Renderer')]" position="before">
             <div class="o_res_partner_kanban_view_sidebar">
-                <h2>Customer Locations</h2>
+                <h2>Contact Locations</h2>
 
                 <div class="list-group">
-                    <t t-foreach="customer_locations" t-as="c" t-key="c.state_id[0]">
-                        <a class="list-group-item" href="#"><span t-esc="c.state_id[1]"/> <span t-esc="c.state_id_count" class="badge bg-info text-white"/></a>
+                    <t t-foreach="contact_locations" t-as="c" t-key="c.state_id[0]">
+                        <a class="list-group-item" href="#" t-on-click="()=>this.selectLocations(c.state_id)"><span t-esc="c.state_id[1]"/> <span t-esc="c.state_id_count" class="badge bg-info text-white"/></a>
                     </t>
                 </div>
             </div>
