@@ -15,9 +15,16 @@ class ResPartnerKanbanController extends KanbanController {
         this.orm = useService("orm")
 
         onWillStart(async ()=>{
-            this.customer_locations = await this.orm.readGroup("res.partner", [], ['state_id'], ['state_id'])
-            this.customer_locations = this.customer_locations.filter(location => location.state_id !== false)
-            console.log("customer locations: ", this.customer_locations)
+            this.contact_locations = await this.orm.readGroup("res.partner", [], ['state_id'], ['state_id'])
+            // MAP over contact locations where state_id is false and reassign to [444, 'Other]
+            this.contact_locations = this.contact_locations.map(location => {
+                if(location.state_id === false){
+                    location.state_id = [444, 'Other'];
+                }
+                return location;
+            });
+            //this.contact_locations = this.contact_locations.filter(location => location.state_id !== false)
+            console.log("contact locations: ", this.contact_locations)
         })
     }
 
@@ -50,9 +57,22 @@ class ResPartnerKanbanController extends KanbanController {
             views: [[false, "list"], [false, "form"]]
         })
     }
+
+    // on-click function to add selected location to search bar for filtering
+    selectLocations(state){
+        const id = state[0]
+        const name = state[1]
+
+        this.env.searchModel.setDomainParts({
+            state: {
+                domain: [['state_id', '=', id]],
+                facetLabel: name
+            }
+        })
+    }
 }
 
-// Customer Location SIDEBAR in Kanban View of Contacts App
+// Contact Location SIDEBAR in Kanban View of Contacts App
 ResPartnerKanbanController.template = "owl.ResPartnerKanbanView"
 
 export const resPartnerKanbanView = {
