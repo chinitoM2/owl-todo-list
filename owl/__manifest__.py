@@ -2,6 +2,7 @@
 {
     'name': 'Owl Tutorial',
     'version': '1.0',
+    'license': 'LGPL-3',
     'summary': 'OWL Tutorial - Action and Service Todo List',
     'sequence': -1,
     'description': """OWL Tutorial - Action and Service Todo List""",
@@ -20,6 +21,7 @@
             'owl/static/src/components/**/*.js',
             'owl/static/src/components/**/*.xml',
             'owl/static/src/components/**/*.css',
+            'owl/static/src/components/**/*.scss',
         ],
         'web.assets_frontend': [],
     },
