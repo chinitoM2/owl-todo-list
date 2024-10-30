@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="owl.OdooServices" owl="1">
+        <Layout display="display">
+            <div class="row">
+                <div class="col m-3">
+                    <button class="btn btn-info" t-on-click="shoheiNotification">Notification Service</button>
+                    <button class="btn btn-info ms-2" t-on-click="shoheiDialog">Dialog Service</button>
+                </div>
+            </div>
+        </Layout>
+    </t>
+</templates>
