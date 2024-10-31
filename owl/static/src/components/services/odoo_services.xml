@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="owl.OdooServices" owl="1">
-        <Layout display="display">
-            <div class="row">
-                <div class="col m-3">
-                    <button class="btn btn-info" t-on-click="shoheiNotification">Notification Service</button>
-                    <button class="btn btn-info ms-2" t-on-click="shoheiDialog">Dialog Service</button>
+        <div t-attf-class="vh-100 {{state.dark_mode == 'true' ? 'bg-dark' : ''}}">
+            <Layout display="display">
+                <div class="row">
+                    <div class="col m-3">
+                        <button class="btn btn-info" t-on-click="shoheiNotification">Notification Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="shoheiDialog">Dialog Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="shoheiEffect">Effect Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="bakeCookieService">Cookie Service</button>
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </div>
     </t>
 </templates>

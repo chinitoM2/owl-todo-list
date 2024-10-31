@@ -6,7 +6,7 @@ import { getDefaultConfig } from "@web/views/view"
 import { useService } from "@web/core/utils/hooks"
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog"
 
-const { Component, useSubEnv } = owl
+const { Component, useSubEnv, useState } = owl
 
 export class OwlOdooServices extends Component{
     setup(){
@@ -19,6 +19,15 @@ export class OwlOdooServices extends Component{
                 ...getDefaultConfig(),
                 ...this.env.config,
             }
+        })
+
+        this.cookieService = useService("cookie")
+        if (this.cookieService.current.dark_mode == undefined){
+            this.cookieService.setCookie("dark_mode", false)
+        }
+
+        this.state = useState({
+            dark_mode: this.cookieService.current.dark_mode
         })
     }
 
@@ -61,6 +70,27 @@ export class OwlOdooServices extends Component{
                 }
             }
         )
+    }
+
+    // show rainbow main effect
+    shoheiEffect(){
+        const effect = this.env.services.effect
+        effect.add({
+            type: "rainbow_man",
+            message: "Boom! Team record for the past 30 days. Currently, Odoo's only effect is the rainbow man"
+        })
+    }
+
+    // set dark_mode cookie service
+    bakeCookieService(){
+        if (this.cookieService.current.dark_mode == 'false'){
+            this.cookieService.setCookie("dark_mode", true)
+        }
+        else{
+            this.cookieService.setCookie("dark_mode", false)
+        }
+
+        this.state.dark_mode = this.cookieService.current.dark_mode
     }
 }
 
