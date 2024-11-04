@@ -27,7 +27,10 @@ export class OwlOdooServices extends Component{
         }
 
         this.state = useState({
-            dark_mode: this.cookieService.current.dark_mode
+            dark_mode: this.cookieService.current.dark_mode,
+            get_http_data: [],
+            post_http_data: [],
+            rpc_data: [],
         })
     }
 
@@ -91,6 +94,27 @@ export class OwlOdooServices extends Component{
         }
 
         this.state.dark_mode = this.cookieService.current.dark_mode
+    }
+
+    async getHTTPService(){
+        const http = this.env.services.http
+        const data = await http.get('https://dummyjson.com/products')
+        console.log(data)
+        this.state.get_http_data = data.products
+    }
+
+    async postHTTPService(){
+        const http = this.env.services.http
+        const data = await http.post('https://dummyjson.com/products/add', {title: 'Oolong Cream BlasTea',})
+        this.state.post_http_data = data
+        console.log(data)
+    }
+
+    async getRPCService(){
+        const rpc = this.env.services.rpc
+        const data = await rpc("/owl/rpc_service")
+        console.log(data)
+        this.state.rpc_data = data
     }
 }
 
