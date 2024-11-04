@@ -9,6 +9,39 @@
                         <button class="btn btn-info ms-2" t-on-click="shoheiDialog">Dialog Service</button>
                         <button class="btn btn-info ms-2" t-on-click="shoheiEffect">Effect Service</button>
                         <button class="btn btn-info ms-2" t-on-click="bakeCookieService">Cookie Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getHTTPService">Get HTTP Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="postHTTPService">Post HTTP Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getRPCService">Get RPC Service</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <table class="table mx-4" t-if="state.get_http_data">
+                            <tr t-foreach="state.get_http_data" t-as="data" t-key="data.id">
+                                <td><span t-esc="data.title"/></td>
+                                <td><span t-esc="data.brand"/></td>
+                                <td><span t-esc="data.description"/></td>
+                                <td><span t-esc="data.category"/></td>
+                                <td><span t-esc="data.price"/></td>
+                                <td><span t-esc="data.rating"/></td>
+                            </tr>
+                        </table>
+
+                        <table class="table mx-4" t-if="state.post_http_data">
+                            <tr>
+                                <td><span t-esc="state.post_http_data.id"/></td>
+                                <td><span t-esc="state.post_http_data.title"/></td>
+                            </tr>
+                        </table>
+
+                        <table class="table mx-4" t-if="state.rpc_data">
+                            <tr t-foreach="state.rpc_data" t-as="data" t-key="data.id">
+                                <td><span t-esc="data.id"/></td>
+                                <td><span t-esc="data.name"/></td>
+                                <td><span t-esc="data.email"/></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </Layout>
