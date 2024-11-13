@@ -12,6 +12,9 @@
                         <button class="btn btn-info ms-2" t-on-click="getHTTPService">Get HTTP Service</button>
                         <button class="btn btn-info ms-2" t-on-click="postHTTPService">Post HTTP Service</button>
                         <button class="btn btn-info ms-2" t-on-click="getRPCService">Get RPC Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getORMService">Get ORM Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getActionService">Get Action Service</button>
+                        <button t-attf-class="btn {{ state.bg_success == '1' ? 'btn-success' : 'btn-info' }} ms-2" t-on-click="getRouterService">Get Router Service</button>
                     </div>
                 </div>
 
@@ -42,8 +45,18 @@
                                 <td><span t-esc="data.email"/></td>
                             </tr>
                         </table>
+
+                        <table class="table mx-4" t-if="state.orm_data">
+                            <tr t-foreach="state.orm_data" t-as="data" t-key="data.id">
+                                <td><span t-esc="data.function"/></td>
+                                <td><span t-esc="data.name"/></td>
+                                <td><span t-esc="data.email"/></td>
+                                <td><span t-esc="data.phone"/></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
+
             </Layout>
         </div>
     </t>

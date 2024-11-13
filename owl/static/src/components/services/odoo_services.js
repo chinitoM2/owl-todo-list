@@ -5,6 +5,8 @@ import { Layout } from "@web/search/layout"
 import { getDefaultConfig } from "@web/views/view"
 import { useService } from "@web/core/utils/hooks"
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog"
+import { routeToUrl } from "@web/core/browser/router_service"
+import { browser } from "@web/core/browser/browser"
 
 const { Component, useSubEnv, useState } = owl
 
@@ -26,11 +28,15 @@ export class OwlOdooServices extends Component{
             this.cookieService.setCookie("dark_mode", false)
         }
 
+        const router = this.env.services.router
+
         this.state = useState({
             dark_mode: this.cookieService.current.dark_mode,
             get_http_data: [],
             post_http_data: [],
             rpc_data: [],
+            orm_data: [],
+            bg_success: router.current.search.bg_success
         })
     }
 
@@ -99,7 +105,7 @@ export class OwlOdooServices extends Component{
     async getHTTPService(){
         const http = this.env.services.http
         const data = await http.get('https://dummyjson.com/products')
-        console.log(data)
+        //console.log(data)
         this.state.get_http_data = data.products
     }
 
@@ -113,8 +119,47 @@ export class OwlOdooServices extends Component{
     async getRPCService(){
         const rpc = this.env.services.rpc
         const data = await rpc("/owl/rpc_service")
-        console.log(data)
         this.state.rpc_data = data
+    }
+
+    async getORMService(){
+        const orm = this.env.services.orm
+        const data = await orm.searchRead("res.partner", [], ['name', 'email', 'phone','function'])
+        data.forEach(record => {
+            if (record.phone === false) {
+                record.phone = 'phone # not provided'
+            }
+
+            if (record.function === false) {
+                record.function = 'function role not provided'
+            }
+        });
+        this.state.orm_data = data
+    }
+
+    getActionService(){
+        const action = this.env.services.action
+        action.doAction({
+            type: "ir.actions.act_window",
+            name: "Action Service",
+            res_model: "res.partner",
+            domain: [],
+            context: {},
+            views: [
+                [false, "list"],
+                [false, "form"],
+            ],
+            view_mode:"list,form",
+            target: "current"
+        })
+    }
+
+    getRouterService(){
+        const router = this.env.services.router
+        console.log(router)
+        let { search } = router.current
+        search.bg_success = search.bg_success == "1" ? "0" : "1"
+        browser.location.href = browser.location.origin + routeToUrl(router.current)
     }
 }
 
