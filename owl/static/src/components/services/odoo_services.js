@@ -36,8 +36,13 @@ export class OwlOdooServices extends Component{
             post_http_data: [],
             rpc_data: [],
             orm_data: [],
-            bg_success: router.current.search.bg_success
+            bg_success: router.current.search.bg_success,
+            user_data: [],
+            company_data: null,
         })
+
+        const titleService = useService("title")
+        titleService.setParts({zopenerp: "Odoo 16"})
     }
 
     // show notification
@@ -160,6 +165,16 @@ export class OwlOdooServices extends Component{
         let { search } = router.current
         search.bg_success = search.bg_success == "1" ? "0" : "1"
         browser.location.href = browser.location.origin + routeToUrl(router.current)
+    }
+
+    getUserService(){
+        const user = this.env.services.user
+        this.state.user_data = user
+    }
+
+    getCompanyService(){
+        const company = this.env.services.company
+        this.state.company_data = JSON.stringify(company)
     }
 }
 

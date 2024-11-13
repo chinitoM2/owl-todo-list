@@ -15,6 +15,9 @@
                         <button class="btn btn-info ms-2" t-on-click="getORMService">Get ORM Service</button>
                         <button class="btn btn-info ms-2" t-on-click="getActionService">Get Action Service</button>
                         <button t-attf-class="btn {{ state.bg_success == '1' ? 'btn-success' : 'btn-info' }} ms-2" t-on-click="getRouterService">Get Router Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getUserService">Get User Service</button>
+                        <button class="btn btn-info ms-2" t-on-click="getCompanyService">Get Company Service</button>
+                        <button class="btn btn-info ms-2">Tab Title Service</button>
                     </div>
                 </div>
 
@@ -54,6 +57,16 @@
                                 <td><span t-esc="data.phone"/></td>
                             </tr>
                         </table>
+
+                        <div class="p-3" t-if="state.user_data">
+                            <div class="h1 text-break" t-esc="state.user_data.name"/>
+                            <div class="h1 text-break" t-esc="state.user_data.isAdmin"/>
+                            <div class="h1 text-break" t-esc="state.user_data.tz"/>
+                        </div>
+
+                        <div class="p-3" t-if="state.company_data">
+                            <div class="h1 text-break" t-esc="state.company_data"/>
+                        </div>
                     </div>
                 </div>
 
