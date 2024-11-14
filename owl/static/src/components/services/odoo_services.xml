@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="owl.OdooServices" owl="1">
-        <div t-attf-class="vh-100 {{state.dark_mode == 'true' ? 'bg-dark' : ''}}">
+        <div t-attf-class="vh-100 overflow-auto {{state.dark_mode == 'true' ? 'bg-dark' : ''}}">
             <Layout display="display">
                 <div class="row">
                     <div class="col m-3">
