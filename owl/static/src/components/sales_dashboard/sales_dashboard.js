@@ -31,10 +31,24 @@ export class OwlSalesDashboard extends Component {
                         labels: data.map(row => row.year),
                         datasets: [
                             {
-                                label: 'Acquisitions By Year',
+                                type: 'bar',
+                                label: 'Bar Dataset',
+                                data: data.map(row => row.count)
+                            },
+                            {
+                                type: 'line',
+                                label: 'Line Dataset',
                                 data: data.map(row => row.count)
                             }
                         ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            }
+                        }
                     }
                 }
             );
