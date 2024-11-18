@@ -24,7 +24,63 @@
                     </div>
 
                     <div class="row">
-                        <KpiCard/>
+                        <KpiCard name="'Quotations'" value="24" percentage="10"/>
+                        <KpiCard name="'Orders'" value="11" percentage="20"/>
+                        <KpiCard name="'Revenue'" value="1102" percentage="2"/>
+                        <KpiCard name="'Average Order'" value="17" percentage="5"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top Products</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <canvas t-ref="chart"/>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 m-0 p-0">
+                            <div class="shadow border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Top States</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Partner Orders</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
