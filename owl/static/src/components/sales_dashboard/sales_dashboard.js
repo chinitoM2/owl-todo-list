@@ -2,6 +2,7 @@
 import { loadJS } from "@web/core/assets"
 import { registry } from "@web/core/registry"
 import { KpiCard } from "../kpi_card/kpi_card"
+import { ChartRenderer } from "../chart_renderer/chart_renderer"
 const { Component, onWillStart, useRef, onMounted } = owl
 
 export class OwlSalesDashboard extends Component {
@@ -57,6 +58,6 @@ export class OwlSalesDashboard extends Component {
 }
 
 OwlSalesDashboard.template = "owl.SalesDashboard"
-OwlSalesDashboard.components = { KpiCard }
+OwlSalesDashboard.components = { KpiCard, ChartRenderer }
 
 registry.category("actions").add("owl.sales_dashboard", OwlSalesDashboard)
